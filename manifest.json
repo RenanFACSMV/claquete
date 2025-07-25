@@ -2,21 +2,18 @@
   "name": "Claquete Digital",
   "short_name": "Claquete",
   "description": "App profissional para controle de cenas, shots e takes",
-  "start_url": "/",
-  "display": "fullscreen",
+  "start_url": "./",
+  "display": "standalone",
   "orientation": "landscape",
   "background_color": "#0f192a",
   "theme_color": "#0f192a",
+  "categories": ["productivity", "entertainment"],
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-512.png", 
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
