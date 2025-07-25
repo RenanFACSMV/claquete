@@ -2,7 +2,7 @@
   "name": "Claquete Digital",
   "short_name": "Claquete",
   "description": "App profissional para controle de cenas, shots e takes",
-  "start_url": "/claquete/",
+  "start_url": "https://github.com/RenanFACSMV/claquete",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#0f192a",
