@@ -1,9 +1,9 @@
 const CACHE_NAME = 'claquete-digital-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/logo.svg'
+  '/claquete/',
+  '/claquete/index.html',
+  '/claquete/manifest.json',
+  '/claquete/logo.svg'
 ];
 
 // Install
