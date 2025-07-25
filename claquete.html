@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claquete Digital</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0f192a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: #0f192a;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .color-bar {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .color-bar div {
+      height: 100%;
+      flex: 1;
+    }
+
+    .color-bar div:nth-child(1) { background: #00d04e; }
+    .color-bar div:nth-child(2) { background: #ffee00; }
+    .color-bar div:nth-child(3) { background: #00d9ff; }
+    .color-bar div:nth-child(4) { background: #ff2a3c; }
+    .color-bar div:nth-child(5) { background: #ffffff; }
+    .color-bar div:nth-child(6) { background: #b5bbc1; }
+    .color-bar div:nth-child(7) { background: #63646b; }
+    .color-bar div:nth-child(8) { background: #3c3c3c; }
+    .color-bar div:nth-child(9) { background: #1c1c1c; }
+
+    header.color-bar {
+      height: 30px;
+    }
+
+    footer.color-bar {
+      height: 15px;
+    }
+
+    .container {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .project-name {
+      background: #2b2e35;
+      padding: 20px;
+      font-size: 1.8em;
+      font-weight: bold;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .project-name input {
+      flex: 1;
+      margin-left: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      font-weight: bold;
+      outline: none;
+    }
+
+    .grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex: 1;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .grid-section {
+      background: #1a222f;
+      border-radius: 10px;
+      padding: 40px;
+      flex: 1;
+      max-width: 450px;
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .grid-section h2 {
+      margin-bottom: 20px;
+      font-size: 1.4em;
+      text-align: center;
+    }
+
+    .value-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex: 1;
+    }
+
+    .value-control {
+      font-size: 8em;
+      user-select: none;
+    }
+
+    .value-control input {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+      width: 2ch;
+      text-align: center;
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    .value-control input::-webkit-outer-spin-button,
+    .value-control input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .grid-section button {
+      background: #3a3d45;
+      border: none;
+      color: white;
+      font-size: 1.5em;
+      border-radius: 6px;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .grid-section button:hover {
+      background: #4a4d55;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .date-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: #2b2e35;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 1.4em;
+      height: 70px;
+    }
+
+    .date-container input[type="date"] {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1em;
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="color-bar">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </header>
+
+  <div class="container">
+    <div class="project-name">
+      Nome do projeto:
+      <input type="text" id="project" placeholder="Digite aqui...">
+    </div>
+
+    <div class="grid">
+      <div class="grid-section">
+        <h2>CENA</h2>
+        <div class="value-container">
+          <button onclick="adjust('scene', 1)">&#9650;</button>
+          <div class="value-control"><input type="number" id="scene" min="0" max="99" value="0"></div>
+          <button onclick="adjust('scene', -1)">&#9660;</button>
+        </div>
+      </div>
+      <div class="grid-section">
+        <h2>SHOT</h2>
+        <div class="value-container">
+          <button onclick="adjust('shot', 1)">&#9650;</button>
+          <div class="value-control"><input type="number" id="shot" min="0" max="99" value="0"></div>
+          <button onclick="adjust('shot', -1)">&#9660;</button>
+        </div>
+      </div>
+      <div class="grid-section">
+        <h2>TAKE</h2>
+        <div class="value-container">
+          <button onclick="adjust('take', 1)">&#9650;</button>
+          <div class="value-control"><input type="number" id="take" min="0" max="99" value="0"></div>
+          <button onclick="adjust('take', -1)">&#9660;</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-content">
+      <div class="date-container">
+        <strong>Data:</strong>
+        <input type="date" id="date">
+      </div>
+    </div>
+
+    <img src="logo.svg" alt="Logo" class="logo" onclick="resetAll()">
+  </div>
+
+  <footer class="color-bar">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </footer>
+
+  <script>
+    const fields = ["scene", "shot", "take", "project", "date"];
+
+    function adjust(id, delta) {
+      const el = document.getElementById(id);
+      let val = parseInt(el.value) + delta;
+      val = Math.max(0, Math.min(99, val));
+      el.value = val;
+      saveValues();
+    }
+
+    function resetAll() {
+      if (confirm("Tem certeza que deseja resetar todos os campos?")) {
+        fields.forEach(id => {
+          const el = document.getElementById(id);
+          if (el.type === "number") el.value = 0;
+          else el.value = "";
+        });
+        saveValues();
+      }
+    }
+
+    function saveValues() {
+      fields.forEach(id => {
+        localStorage.setItem("claquete_" + id, document.getElementById(id).value);
+      });
+    }
+
+    function loadValues() {
+      fields.forEach(id => {
+        const val = localStorage.getItem("claquete_" + id);
+        if (val !== null) document.getElementById(id).value = val;
+      });
+    }
+
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then((registration) => {
+            console.log('SW registered: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+
+    window.onload = () => {
+      loadValues();
+    };
+
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener("input", saveValues);
+    });
+  </script>
+</body>
+</html>
